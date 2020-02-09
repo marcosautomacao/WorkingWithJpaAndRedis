@@ -8,13 +8,16 @@ http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 		transaction-type="RESOURCE_LOCAL">
 		<class>br.com.fiap.entity.Evento</class>
 		<class>br.com.fiap.entity.Participante</class>
+		<class>br.com.fiap.entity.ClientEntity</class>
+		<class>br.com.fiap.entity.ProdutosEntity</class>
+		<class>br.com.fiap.entity.EnderecoEntity</class>
 		<properties>
 			<property name="hibernate.hbm2ddl.auto" value="update" />
 			<property name="hibernate.format_sql" value="true" />
 			<property name="hibernate.dialect"
 				value="org.hibernate.dialect.MySQL5InnoDBDialect" />
 			<property name="javax.persistence.jdbc.url"
-				value="jdbc:mysql://localhost:3306/dblojaFiap?createDatabaseIfNotExist=true" />
+				value="jdbc:mysql://localhost:3306/dblojaFiap?createDatabaseIfNotExist=true&amp;serverTimezone=UTC&amp;useSSL=false" />
 			<property name="javax.persistence.jdbc.user" value="root" />
 			<property name="javax.persistence.jdbc.password"
 				value="root" />
