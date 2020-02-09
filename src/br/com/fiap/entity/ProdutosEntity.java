@@ -1,16 +1,21 @@
 package br.com.fiap.entity;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Produtos") 
+@Table(name="produtos") 
 public class ProdutosEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO) 
@@ -34,4 +39,8 @@ public class ProdutosEntity {
 	
 	@Column(name = "dt_Atualizacao")
 	private Date dt_Atualizacao;
+	
+	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "id_produto")
+	private Set<PedidosEntity> pedidos = new HashSet<>();
 }

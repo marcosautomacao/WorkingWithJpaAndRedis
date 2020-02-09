@@ -8,9 +8,10 @@ http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 		transaction-type="RESOURCE_LOCAL">
 		<class>br.com.fiap.entity.Evento</class>
 		<class>br.com.fiap.entity.Participante</class>
-		<class>br.com.fiap.entity.ClientEntity</class>
+		<class>br.com.fiap.entity.ClienteEntity</class>
 		<class>br.com.fiap.entity.ProdutosEntity</class>
 		<class>br.com.fiap.entity.EnderecoEntity</class>
+		<class>br.com.fiap.entity.PedidosEntity</class>
 		<properties>
 			<property name="hibernate.hbm2ddl.auto" value="update" />
 			<property name="hibernate.format_sql" value="true" />
