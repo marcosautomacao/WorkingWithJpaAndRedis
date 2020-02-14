@@ -28,13 +28,13 @@ public class PedidosEntity {
 	@Column(name = "descricao")
 	private String descricao;
 	
-	@Column(name = "descricao")
+	@Column(name = "valor_total")
 	private long valor_total;
 	
-	@Column(name = "descricao")
+	@Column(name = "dt_pedido")
 	private Date dt_pedido;
 	
-	@Column(name = "descricao")
+	@Column(name = "dt_entrega")
 	private Date dt_entrega;
 
 }
