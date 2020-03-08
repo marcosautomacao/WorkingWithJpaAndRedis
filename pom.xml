@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<name>Spring Project DDD</name>
-	<groupId>de.bht-berlin.knabe</groupId>
+	<groupId>br.java_project.spring_project_ddd</groupId>
 	<artifactId>spring-project-ddd</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<description>Api de base para projetos com Spring e DDD</description>
@@ -18,8 +18,8 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>8</java.version>
 	</properties>
-	
-	<dependencies>
+
+    <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -45,7 +45,7 @@
         </dependency>
     </dependencies>
 
-	<build>
+    <build>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -54,30 +54,7 @@
         </plugins>
     </build>
 
-	<reporting>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>2.10.4</version>
-				<configuration>
-					<show>private</show>
-				</configuration>
-			</plugin>
-			<!-- Do not look for possible repositories for each dependency in order 
-				to speed up project site generation. See https://www.mkyong.com/maven/maven-site-build-is-very-slow-dependency-report/ -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-project-info-reports-plugin</artifactId>
-				<version>2.9</version>
-				<configuration>
-					<dependencyLocationsEnabled>false</dependencyLocationsEnabled>
-				</configuration>
-			</plugin>
-		</plugins>
-	</reporting>
-
-	<repositories>
+    <repositories>
         <repository>
             <id>spring-milestones</id>
             <name>Spring Milestones</name>
@@ -92,5 +69,20 @@
             </snapshots>
         </repository>
     </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/milestone</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>spring-snapshots</id>
+            <name>Spring Snapshots</name>
+            <url>https://repo.spring.io/snapshot</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
 
 </project>
