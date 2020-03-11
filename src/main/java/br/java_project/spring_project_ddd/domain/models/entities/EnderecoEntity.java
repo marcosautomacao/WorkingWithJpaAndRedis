@@ -1,4 +1,6 @@
-package br.java_project.spring_project_ddd.domain.models;
+package br.java_project.spring_project_ddd.domain.models.entities;
+
+import br.java_project.spring_project_ddd.domain.models.entities.AlunoEntity;
 
 import java.util.Date;
 

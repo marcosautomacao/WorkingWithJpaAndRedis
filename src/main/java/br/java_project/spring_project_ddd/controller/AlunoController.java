@@ -1,33 +1,44 @@
 package br.java_project.spring_project_ddd.controller;
 
-import br.java_project.spring_project_ddd.domain.interfaces.IStudentService;
-import br.java_project.spring_project_ddd.domain.models.AlunoEntity;
+import br.java_project.spring_project_ddd.domain.interfaces.StudentService;
+import br.java_project.spring_project_ddd.domain.models.dto.AlunoDTO;
+import br.java_project.spring_project_ddd.domain.models.entities.AlunoEntity;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("aluno")
 public class AlunoController {
 
-    private final IStudentService studentService;
+    private final StudentService studentService;
     private AlunoEntity aluno;
 
-    public AlunoController(IStudentService studentService) {
+    public AlunoController(StudentService studentService) {
         this.studentService = studentService;
     }
 
     @GetMapping
-    public String get() {
+    public List<AlunoDTO> get() {
+
         return studentService.find();
+
     }
 
     @GetMapping("{id}")
-    public String getById(@PathVariable int id) {
+    public AlunoDTO getById(@PathVariable int id) {
+
         return studentService.findByOne(id);
+
     }
 
     @PostMapping
-    public String postStudent() {
-        return studentService.find();
+    @ResponseStatus(HttpStatus.OK)
+    public AlunoDTO postStudent(@RequestBody AlunoDTO aluno) {
+
+        return studentService.postStudent(aluno);
+
     }
 
 }
