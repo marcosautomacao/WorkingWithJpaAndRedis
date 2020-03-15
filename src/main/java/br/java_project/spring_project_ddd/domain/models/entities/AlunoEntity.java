@@ -2,8 +2,6 @@ package br.java_project.spring_project_ddd.domain.models.entities;
 
 import br.java_project.spring_project_ddd.domain.models.dto.AlunoDTO;
 
-import java.util.Date;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,13 +18,13 @@ public class AlunoEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id_aluno")
-	private int id_cliente;
+	private int id_aluno;
 
 	@Column(name = "matricula")
 	private int matricula;
 
 	@Column(name = "cpf")
-	private int cpf;
+	private double cpf;
 
 	@Column(name = "nome")
 	private String nome;
@@ -54,12 +52,17 @@ public class AlunoEntity {
 		this.dt_cadastro = aluno.getDt_cadastro();
 	}
 
-	public int getId_cliente() {
-		return id_cliente;
+    public AlunoEntity(String nome, double cpf) {
+		this.nome = nome;
+		this.cpf = cpf;
+    }
+
+    public int getId_cliente() {
+		return id_aluno;
 	}
 
 	public void setId_cliente(int id_cliente) {
-		this.id_cliente = id_cliente;
+		this.id_aluno = id_cliente;
 	}
 
 	public int getMatricula() {
@@ -70,7 +73,7 @@ public class AlunoEntity {
 		this.matricula = matricula;
 	}
 
-	public int getCpf() {
+	public double getCpf() {
 		return cpf;
 	}
 

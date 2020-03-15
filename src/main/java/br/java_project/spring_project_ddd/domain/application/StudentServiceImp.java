@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
+import java.util.stream.Collectors;
 
 @Service
 public class StudentServiceImp implements StudentService {
@@ -16,26 +18,34 @@ public class StudentServiceImp implements StudentService {
     public List<AlunoDTO> find() {
         // toDo -> Chamar repository
         List<AlunoDTO> alunos = new ArrayList<AlunoDTO>();
-
         FakeBanco.getAlunos().forEach(a -> alunos.add(new AlunoDTO(a)));
-
         return alunos;
     }
 
     @Override
     public AlunoDTO findByOne(int id) {
         // toDo -> Chamar repository
-        AlunoDTO aluno = new AlunoDTO();
-
-
-        return aluno;
+        Stream<AlunoEntity> alunoEntity = 
+            FakeBanco.getAlunos().stream().filter(a -> a.getMatricula() == id);
+        return new AlunoDTO(alunoEntity.collect(Collectors.toList()).get(0));
     }
 
     @Override
     public AlunoDTO postStudent(AlunoDTO aluno) {
         // toDo -> Chamar repository
-        AlunoEntity alunos = new AlunoEntity(aluno);
-        FakeBanco.setAluno(alunos);
+        AlunoEntity alunoEntity = new AlunoEntity(aluno);
+        FakeBanco.setAluno(alunoEntity);
         return aluno;
+    }
+
+    @Override
+    public Void postStudents(List<AlunoDTO> alunos) {
+        // toDo -> Chamar repository
+        alunos.forEach(aluno -> {
+            AlunoEntity alunoEntity = new AlunoEntity(aluno);
+            FakeBanco.setAluno(alunoEntity);
+
+        });
+        return null;
     }
 }
