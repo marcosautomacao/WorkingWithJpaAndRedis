@@ -10,7 +10,7 @@ public class AlunoDTO {
 
     private int matricula;
 
-    private int cpf;
+    private double cpf;
 
     private String nome;
 
@@ -62,7 +62,7 @@ public class AlunoDTO {
         this.matricula = matricula;
     }
 
-    public int getCpf() {
+    public double getCpf() {
         return cpf;
     }
 

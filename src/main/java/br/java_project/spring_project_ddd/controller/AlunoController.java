@@ -13,7 +13,6 @@ import java.util.List;
 public class AlunoController {
 
     private final StudentService studentService;
-    private AlunoEntity aluno;
 
     public AlunoController(StudentService studentService) {
         this.studentService = studentService;
@@ -34,7 +33,7 @@ public class AlunoController {
     }
 
     @PostMapping
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.CREATED)
     public AlunoDTO postStudent(@RequestBody AlunoDTO aluno) {
 
         return studentService.postStudent(aluno);
