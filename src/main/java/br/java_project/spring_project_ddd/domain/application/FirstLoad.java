@@ -1,6 +1,8 @@
 package br.java_project.spring_project_ddd.domain.application;
 
 import br.java_project.spring_project_ddd.FakeBanco;
+import br.java_project.spring_project_ddd.domain.interfaces.StudentService;
+import br.java_project.spring_project_ddd.domain.models.dto.AlunoDTO;
 import br.java_project.spring_project_ddd.domain.models.entities.AlunoEntity;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,11 @@ import java.util.Scanner;
 
 @Service
 public final class FirstLoad {
+    private static StudentService studentService;
+
+    public FirstLoad(StudentService studentService) {
+        this.studentService = studentService;
+    }
 
     public static void run() {
         try {
@@ -26,8 +33,8 @@ public final class FirstLoad {
 
                 if (linhas.size() > 1) {
                     double cpf = Double.parseDouble(linhas.get(1).toString().replaceAll("[^\\d.]", ""));
-                    AlunoEntity alunoEntity = new AlunoEntity(linhas.get(0).toString(), cpf);
-                    FakeBanco.setAluno(alunoEntity);
+                    AlunoDTO aluno = new AlunoDTO(linhas.get(0).toString(), cpf);
+                    studentService.postStudent(aluno);
                 }
                 System.out.println(data);
             }

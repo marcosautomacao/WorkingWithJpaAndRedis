@@ -2,6 +2,8 @@ package br.java_project.spring_project_ddd.domain.models.entities;
 
 import br.java_project.spring_project_ddd.domain.models.dto.AlunoDTO;
 
+import java.util.Date;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -36,20 +38,15 @@ public class AlunoEntity {
 	private int telefone;
 
 	@Column(name = "dt_cadastro")
-	private String dt_cadastro;
+	private Date dt_cadastro;
 	
 	@OneToOne(mappedBy = "aluno", targetEntity = EnderecoEntity.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private EnderecoEntity endereco;
 
 	public AlunoEntity() {};
 
-	public AlunoEntity(AlunoDTO aluno) {
-		this.matricula = aluno.getMatricula();
-		this.cpf = aluno.getCpf();
-		this.nome = aluno.getNome();
-		this.e_mail = aluno.getE_mail();
-		this.telefone = aluno.getTelefone();
-		this.dt_cadastro = aluno.getDt_cadastro();
+	public AlunoEntity(int i) {
+		this.id_aluno = i;
 	}
 
     public AlunoEntity(String nome, double cpf) {
@@ -57,8 +54,18 @@ public class AlunoEntity {
 		this.cpf = cpf;
     }
 
-    public int getId_cliente() {
+	public int getId_cliente() {
 		return id_aluno;
+	}
+
+	public AlunoEntity(AlunoDTO a) {
+		this.id_aluno = a.getId_cliente();
+		this.matricula = a.getMatricula();
+		this.cpf = a.getCpf();
+		this.nome = a.getNome();
+		this.e_mail = a.getE_mail();
+		this.telefone = a.getTelefone();
+		this.dt_cadastro = a.getDt_cadastro();
 	}
 
 	public void setId_cliente(int id_cliente) {
@@ -105,11 +112,11 @@ public class AlunoEntity {
 		this.telefone = telefone;
 	}
 
-	public String getDt_cadastro() {
+	public Date getDt_cadastro() {
 		return dt_cadastro;
 	}
 
-	public void setDt_cadastro(String dt_cadastro) {
+	public void setDt_cadastro(Date dt_cadastro) {
 		this.dt_cadastro = dt_cadastro;
 	}
 }

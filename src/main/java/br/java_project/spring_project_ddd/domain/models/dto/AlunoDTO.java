@@ -18,13 +18,13 @@ public class AlunoDTO {
 
     private int telefone;
 
-    private String dt_cadastro;
+    private Date dt_cadastro;
 
     // Contructors
 
     public AlunoDTO() { }
 
-    public AlunoDTO(int id_cliente, int matricula, int cpf, String nome, String e_mail, int telefone, String dt_cadastro) {
+    public AlunoDTO(int id_cliente, int matricula, int cpf, String nome, String e_mail, int telefone, Date dt_cadastro) {
         this.id_cliente = id_cliente;
         this.matricula = matricula;
         this.cpf = cpf;
@@ -46,7 +46,13 @@ public class AlunoDTO {
 
     // Getters and setters
 
-    public int getId_cliente() {
+    public AlunoDTO(String nome, double cpf) {
+    	this.cpf = cpf;
+    	this.nome = nome;
+    	this.dt_cadastro = new Date();
+	}
+
+	public int getId_cliente() {
         return id_cliente;
     }
 
@@ -94,11 +100,11 @@ public class AlunoDTO {
         this.telefone = telefone;
     }
 
-    public String getDt_cadastro() {
+    public Date getDt_cadastro() {
         return dt_cadastro;
     }
 
-    public void setDt_cadastro(String dt_cadastro) {
+    public void setDt_cadastro(Date dt_cadastro) {
         this.dt_cadastro = dt_cadastro;
     }
 }
