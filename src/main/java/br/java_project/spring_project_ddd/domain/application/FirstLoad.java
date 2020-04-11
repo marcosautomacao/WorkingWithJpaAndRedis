@@ -1,7 +1,11 @@
 package br.java_project.spring_project_ddd.domain.application;
 
 import br.java_project.spring_project_ddd.FakeBanco;
+import br.java_project.spring_project_ddd.domain.models.dto.AlunoDTO;
 import br.java_project.spring_project_ddd.domain.models.entities.AlunoEntity;
+import br.java_project.spring_project_ddd.infrastructure.AlunoRepository;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
@@ -13,6 +17,10 @@ import java.util.Scanner;
 
 @Service
 public final class FirstLoad {
+	
+	@Autowired
+	static
+    AlunoRepository alunoRepository;
 
     public static void run() {
         try {
@@ -25,9 +33,10 @@ public final class FirstLoad {
                 linhas = Arrays.asList(data.split("[ ]{2,}"));
 
                 if (linhas.size() > 1) {
-                    double cpf = Double.parseDouble(linhas.get(1).toString().replaceAll("[^\\d.]", ""));
-                    AlunoEntity alunoEntity = new AlunoEntity(linhas.get(0).toString(), cpf);
-                    FakeBanco.setAluno(alunoEntity);
+                    double matricula = Double.parseDouble(linhas.get(1).toString().replaceAll("[^\\d.]", ""));
+                    AlunoEntity alunoEntity = new AlunoEntity(linhas.get(0).toString(), matricula);
+                                       
+                    alunoRepository.save(alunoEntity);
                 }
                 System.out.println(data);
             }

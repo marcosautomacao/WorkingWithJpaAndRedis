@@ -2,6 +2,8 @@ package br.java_project.spring_project_ddd.domain.models.entities;
 
 import br.java_project.spring_project_ddd.domain.models.dto.AlunoDTO;
 
+import java.util.Date;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,22 +23,13 @@ public class AlunoEntity {
 	private int id_aluno;
 
 	@Column(name = "matricula")
-	private int matricula;
-
-	@Column(name = "cpf")
-	private double cpf;
+	private double matricula;
 
 	@Column(name = "nome")
 	private String nome;
 
-	@Column(name = "e_mail")
-	private String e_mail;
-
-	@Column(name = "telefone")
-	private int telefone;
-
 	@Column(name = "dt_cadastro")
-	private String dt_cadastro;
+	private Date dt_cadastro;
 	
 	@OneToOne(mappedBy = "aluno", targetEntity = EnderecoEntity.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private EnderecoEntity endereco;
@@ -45,40 +38,30 @@ public class AlunoEntity {
 
 	public AlunoEntity(AlunoDTO aluno) {
 		this.matricula = aluno.getMatricula();
-		this.cpf = aluno.getCpf();
 		this.nome = aluno.getNome();
-		this.e_mail = aluno.getE_mail();
-		this.telefone = aluno.getTelefone();
 		this.dt_cadastro = aluno.getDt_cadastro();
 	}
-
-    public AlunoEntity(String nome, double cpf) {
+	
+	public AlunoEntity(String nome, double matricula) {
+		this.matricula = matricula;
 		this.nome = nome;
-		this.cpf = cpf;
-    }
+		this.dt_cadastro = new Date();
+	}
 
-    public int getId_cliente() {
+	public int getId_aluno() {
 		return id_aluno;
 	}
 
-	public void setId_cliente(int id_cliente) {
-		this.id_aluno = id_cliente;
+	public void setId_aluno(int id_aluno) {
+		this.id_aluno = id_aluno;
 	}
 
-	public int getMatricula() {
+	public double getMatricula() {
 		return matricula;
 	}
 
 	public void setMatricula(int matricula) {
 		this.matricula = matricula;
-	}
-
-	public double getCpf() {
-		return cpf;
-	}
-
-	public void setCpf(int cpf) {
-		this.cpf = cpf;
 	}
 
 	public String getNome() {
@@ -89,28 +72,20 @@ public class AlunoEntity {
 		this.nome = nome;
 	}
 
-	public String getE_mail() {
-		return e_mail;
-	}
-
-	public void setE_mail(String e_mail) {
-		this.e_mail = e_mail;
-	}
-
-	public int getTelefone() {
-		return telefone;
-	}
-
-	public void setTelefone(int telefone) {
-		this.telefone = telefone;
-	}
-
-	public String getDt_cadastro() {
+	public Date getDt_cadastro() {
 		return dt_cadastro;
 	}
 
-	public void setDt_cadastro(String dt_cadastro) {
+	public void setDt_cadastro(Date dt_cadastro) {
 		this.dt_cadastro = dt_cadastro;
+	}
+
+	public EnderecoEntity getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(EnderecoEntity endereco) {
+		this.endereco = endereco;
 	}
 }
 

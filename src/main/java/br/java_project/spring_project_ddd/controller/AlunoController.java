@@ -20,7 +20,7 @@ public class AlunoController {
 
     @GetMapping
     public List<AlunoDTO> get() {
-
+    	
         return studentService.find();
 
     }
